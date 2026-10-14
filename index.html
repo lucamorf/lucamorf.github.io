@@ -41,7 +41,8 @@ html[lang="en"] [data-l="de"], html[lang="de"] [data-l="en"]{display:none !impor
 .wrap{max-width:1040px;margin:0 auto;padding-inline:24px}
 
 /* ---------- top bar ---------- */
-.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
+.bar{position:sticky;top:0;z-index:30;background:var(--bg);display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+section[id]{scroll-margin-top:76px}
 .brand{font-family:'Newsreader',Georgia,serif;font-weight:600;font-size:1.15rem;color:var(--ink);text-decoration:none;letter-spacing:.01em}
 .nav{display:flex;align-items:center;gap:22px;font-size:.92rem}
 .nav a{color:var(--mid);text-decoration:none}
@@ -49,7 +50,21 @@ html[lang="en"] [data-l="de"], html[lang="de"] [data-l="en"]{display:none !impor
 .lang{display:inline-flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden;background:var(--surface)}
 .lang button{font:inherit;font-size:.8rem;font-weight:600;letter-spacing:.06em;border:0;background:transparent;color:var(--mid);padding:5px 12px;cursor:pointer}
 .lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
-@media (max-width:720px){.nav a{display:none}}
+.menu{display:flex;align-items:center;gap:22px}
+.menu-btn{display:none;width:40px;height:36px;padding:0;border:1px solid var(--rule);border-radius:10px;background:var(--surface);cursor:pointer;align-items:center;justify-content:center;flex-direction:column;gap:4px}
+.menu-btn span{display:block;width:18px;height:2px;border-radius:2px;background:var(--ink);transition:transform .2s,opacity .2s}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+@media (prefers-reduced-motion: reduce){.menu-btn span{transition:none}}
+@media (max-width:720px){
+  .nav{gap:10px}
+  .menu-btn{display:inline-flex}
+  .menu{display:none;position:absolute;left:0;right:0;top:calc(100% - 2px);flex-direction:column;align-items:stretch;gap:0;padding:8px;background:var(--surface);border:1px solid var(--rule);border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.16)}
+  .menu.open{display:flex}
+  .menu a{padding:14px;font-size:1.02rem;color:var(--ink);border-radius:8px}
+  .menu a:hover,.menu a:focus-visible{background:var(--bg);color:var(--accent-ink)}
+}
 
 /* ---------- hero: the photo is the stage, the text sits in its empty left half ---------- */
 .hero{
@@ -145,14 +160,17 @@ footer{border-top:1px solid var(--rule);padding-block:28px 48px;color:var(--mute
   <header class="bar">
     <a class="brand" href="#top">Luca Morf</a>
     <nav class="nav" aria-label="Sections">
-      <a href="#research"><span data-l="en">Research</span><span data-l="de">Forschung</span></a>
-      <a href="#teaching"><span data-l="en">Teaching</span><span data-l="de">Lehre</span></a>
-      <a href="#recognition"><span data-l="en">Awards and talks</span><span data-l="de">Preise und Vorträge</span></a>
-      <a href="#contact"><span data-l="en">Contact</span><span data-l="de">Kontakt</span></a>
+      <div class="menu" id="menu">
+        <a href="#research"><span data-l="en">Research</span><span data-l="de">Forschung</span></a>
+        <a href="#teaching"><span data-l="en">Teaching</span><span data-l="de">Lehre</span></a>
+        <a href="#recognition"><span data-l="en">Awards and talks</span><span data-l="de">Preise und Vorträge</span></a>
+        <a href="#contact"><span data-l="en">Contact</span><span data-l="de">Kontakt</span></a>
+      </div>
       <span class="lang" role="group" aria-label="Language">
         <button type="button" data-set="en" aria-pressed="true">EN</button>
         <button type="button" data-set="de" aria-pressed="false">DE</button>
       </span>
+      <button type="button" class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Menu"><span></span><span></span><span></span></button>
     </nav>
   </header>
 
@@ -164,7 +182,7 @@ footer{border-top:1px solid var(--rule);padding-block:28px 48px;color:var(--mute
       <div class="txt">
         <p class="kicker"><span data-l="en">Theoretical astrophysics and cosmology · University of Zürich</span><span data-l="de">Theoretische Astrophysik und Kosmologie · Universität Zürich</span></p>
         <h1>Luca Morf</h1>
-        <p class="role"><span data-l="en">PhD candidate studying the interiors of Uranus, Neptune and sub-Neptunes</span><span data-l="de">Doktorand, erforscht das Innere von Uranus, Neptun und Sub-Neptunen</span></p>
+        <p class="role"><span data-l="en">PhD candidate studying the interiors of Uranus, Neptune and sub-Neptunes</span><span data-l="de">Doktorand, erforscht das Innere von Uranus, Neptun und <span style="white-space:nowrap">Sub-Neptunen</span></span></p>
         <p class="lede">
           <span data-l="en">I build models that infer what planets are made of, and how certain we can be, given the sparse data on Uranus, Neptune and similar exoplanets.</span>
           <span data-l="de">Ich entwickle Modelle, die aus den spärlichen Daten zu Uranus, Neptun und ähnlichen Exoplaneten ableiten, woraus Planeten bestehen und wie sicher wir dabei sein können.</span>
@@ -181,13 +199,13 @@ footer{border-top:1px solid var(--rule);padding-block:28px 48px;color:var(--mute
       <h2><span data-l="en">Research</span><span data-l="de">Forschung</span></h2>
       <div>
         <div data-l="en">
-          <p>Our picture of Uranus and Neptune rests on a handful of measurements, most of them from Voyager 2. I develop models of their interiors and the statistical methods to explore them without assuming a structure in advance, asking which compositions the data actually allow.</p>
+          <p>Our picture of Uranus and Neptune rests on a handful of measurements, most of them from Voyager 2. I develop models of their interiors and the statistical methods to explore them without assuming a fixed structure in advance, asking which interior compositions the data actually allow.</p>
           <p>The same approach applies to exoplanets orbiting other stars. For the sub-Neptunes K2-18 b and TOI-270 d, I study how more flexible interior models, including gradients in composition, change what we can say about them. Other work covers Jupiter's primordial structure, dark matter in the Milky Way, and simulations of the large-scale structure of the universe.</p>
           <p>I am a PhD candidate in <a href="https://www.astro.uzh.ch/~rhelled/">Ravit Helled</a>'s group at the University of Zürich. My dissertation is titled <em>Characterizing Uranus, Neptune and Intermediate-Mass Exoplanets</em>.</p>
         </div>
         <div data-l="de">
-          <p>Unser Bild von Uranus und Neptun beruht auf wenigen Messungen, die meisten stammen von Voyager 2. Ich entwickle Modelle ihres Inneren und die statistischen Methoden, um sie zu erkunden, ohne vorab eine Struktur anzunehmen. Die Frage ist, welche Zusammensetzungen die Daten tatsächlich zulassen.</p>
-          <p>Derselbe Ansatz lässt sich auf Exoplaneten bei fernen Sternen übertragen. An den Sub-Neptunen K2-18 b und TOI-270 d untersuche ich, wie flexiblere Modelle des Inneren, etwa mit Gradienten in der Zusammensetzung, verändern, was wir über sie sagen können. Weitere Arbeiten betreffen die ursprüngliche Struktur von Jupiter, Dunkle Materie in der Milchstrasse und Simulationen der grossräumigen Struktur des Universums.</p>
+          <p>Unser Bild von Uranus und Neptun stützt sich auf wenige Messungen, die meisten davon von Voyager 2. Ich entwickle Modelle ihres Innenaufbaus sowie statistische Methoden, um diesen zu untersuchen, ohne eine fixe Struktur vorauszusetzen. Mich interessiert, welche Zusammensetzungen des Inneren die Daten tatsächlich zulassen.</p>
+          <p>Derselbe Ansatz lässt sich auf Exoplaneten bei anderen Sternen übertragen. An den Sub-Neptunen K2-18 b und TOI-270 d untersuche ich, was sich über ihr Inneres sagen lässt, wenn die Modelle flexibler sind, etwa durch Gradienten in der Zusammensetzung. Weitere Arbeiten betreffen die ursprüngliche Struktur von Jupiter, Dunkle Materie in der Milchstrasse und Simulationen der grossräumigen Struktur des Universums.</p>
           <p>Ich bin Doktorand in der Gruppe von <a href="https://www.astro.uzh.ch/~rhelled/">Ravit Helled</a> an der Universität Zürich. Meine Dissertation trägt den Titel <em>Characterizing Uranus, Neptune and Intermediate-Mass Exoplanets</em>.</p>
         </div>
 
@@ -275,9 +293,13 @@ footer{border-top:1px solid var(--rule);padding-block:28px 48px;color:var(--mute
   var titles={en:'Luca Morf, theoretical astrophysics and cosmology',de:'Luca Morf, Theoretische Astrophysik und Kosmologie'};
   var root=document.documentElement;
   var buttons=document.querySelectorAll('.lang button');
+  var menuBtn=document.querySelector('.menu-btn');
+  var menu=document.getElementById('menu');
+  function closeMenu(){menu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');}
   function apply(l){
     root.lang=l;
     document.title=titles[l];
+    menuBtn.setAttribute('aria-label',l==='de'?'Menü':'Menu');
     document.querySelectorAll('img[data-alt-en]').forEach(function(i){i.alt=i.getAttribute('data-alt-'+l);});
     buttons.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.set===l?'true':'false');});
   }
@@ -289,6 +311,15 @@ footer{border-top:1px solid var(--rule);padding-block:28px 48px;color:var(--mute
     });
   });
   apply(root.lang==='de'?'de':'en');
+  menuBtn.addEventListener('click',function(e){
+    e.stopPropagation();
+    var open=menu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded',open?'true':'false');
+  });
+  menu.addEventListener('click',function(e){if(e.target.closest('a'))closeMenu();});
+  document.addEventListener('click',function(e){if(!e.target.closest('.nav'))closeMenu();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeMenu();menuBtn.focus();}});
+  window.addEventListener('resize',function(){if(window.innerWidth>720)closeMenu();});
   var m=document.getElementById('mail');
   var u='luca.morf',d='uzh.ch';
   m.href='mailto:'+u+'@'+d;
