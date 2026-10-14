@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luca Morf, theoretical astrophysics and cosmology</title>
+<meta name="description" content="Luca Morf, PhD candidate in theoretical astrophysics and cosmology at the University of Zürich. Interiors of Uranus, Neptune and intermediate-mass exoplanets.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='none' stroke='%231F5FD1' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%231C9BA8' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='4' fill='%231F5FD1'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<script>
+try{var q=new URLSearchParams(location.search).get('lang'),s=localStorage.getItem('lang'),l=q||s;if(l==='de'||l==='en')document.documentElement.lang=l}catch(e){}
+</script>
+<style>
+/* ---------- colours (light first, dark below) ---------- */
+:root{
+  --bg:#F2F5F8; --surface:#FFFFFF; --ink:#0D1B2A; --mid:#3F5265; --muted:#5E7388;
+  --rule:#D5DEE7; --accent:#1F5FD1; --accent-ink:#1749A6; --accent-2:#1C9BA8;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#09111D; --surface:#0F1B2B; --ink:#E6EEF6; --mid:#A9BBCC; --muted:#8197AB;
+    --rule:#1E2D40; --accent:#6EA2FF; --accent-ink:#8FB8FF; --accent-2:#4CC3CF;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#09111D; --surface:#0F1B2B; --ink:#E6EEF6; --mid:#A9BBCC; --muted:#8197AB;
+  --rule:#1E2D40; --accent:#6EA2FF; --accent-ink:#8FB8FF; --accent-2:#4CC3CF;
+}
+
+/* ---------- base ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--accent-ink);text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+html[lang="en"] [data-l="de"], html[lang="de"] [data-l="en"]{display:none !important}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:24px}
+
+/* ---------- top bar ---------- */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
+.brand{font-family:'Newsreader',Georgia,serif;font-weight:600;font-size:1.15rem;color:var(--ink);text-decoration:none;letter-spacing:.01em}
+.nav{display:flex;align-items:center;gap:22px;font-size:.92rem}
+.nav a{color:var(--mid);text-decoration:none}
+.nav a:hover{color:var(--accent)}
+.lang{display:inline-flex;border:1px solid var(--rule);border-radius:999px;overflow:hidden;background:var(--surface)}
+.lang button{font:inherit;font-size:.8rem;font-weight:600;letter-spacing:.06em;border:0;background:transparent;color:var(--mid);padding:5px 12px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+@media (max-width:720px){.nav a{display:none}}
+
+/* ---------- hero: the photo is the stage, the text sits in its empty left half ---------- */
+.hero{
+  --hi:#0D1B2A; --hm:#3F5265; --hk:#16808B; --hb:#FFFFFF;
+  position:relative; display:flex; align-items:center; min-height:540px;
+  margin-block:8px 72px; border-radius:22px; overflow:hidden; background:#E9ECEF;
+}
+.hero > img{
+  position:absolute;top:0;right:0;bottom:0;width:66%;height:100%;
+  object-fit:cover;object-position:62% 22%;
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 24%);
+  mask-image:linear-gradient(to right,transparent 0,#000 24%);
+}
+.hero .txt{position:relative;width:46%;padding:56px 0 56px clamp(28px,5vw,56px)}
+.kicker{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--hk);margin:0 0 16px}
+h1{font-family:'Newsreader',Georgia,serif;font-weight:500;font-size:clamp(2.6rem,6.2vw,4.4rem);line-height:1.02;letter-spacing:-.015em;margin:0 0 18px;color:var(--hi);text-wrap:balance}
+.role{font-size:1.12rem;color:var(--hm);margin:0 0 20px}
+.lede{font-family:'Newsreader',Georgia,serif;font-size:1.28rem;line-height:1.5;color:var(--hi);margin:0 0 28px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;font-weight:600;font-size:.95rem;padding:11px 18px;border-radius:8px;text-decoration:none;border:1px solid var(--hi);color:var(--hb);background:var(--hi)}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.ghost{background:transparent;color:var(--hi)}
+.btn.ghost:hover{background:rgba(255,255,255,.7);color:var(--accent-ink);border-color:var(--accent)}
+@media (max-width:860px){
+  .hero{display:block;min-height:0;margin-bottom:48px;background:var(--surface);--hi:var(--ink);--hm:var(--mid);--hk:var(--accent-2);--hb:var(--bg)}
+  .hero > img{position:static;width:100%;height:auto;aspect-ratio:4/3;object-position:80% 18%;-webkit-mask-image:none;mask-image:none}
+  .hero .txt{width:auto;padding:24px 22px 30px}
+  .btn.ghost:hover{background:var(--bg)}
+}
+
+/* ---------- sections ---------- */
+.sec{display:grid;grid-template-columns:200px 1fr;gap:12px 40px;padding-block:44px;border-top:1px solid var(--rule)}
+.sec h2{margin:4px 0 0;font-family:'JetBrains Mono',ui-monospace,monospace;font-weight:500;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.sec p{margin:0 0 1em;max-width:40em}
+.sec p:last-child{margin-bottom:0}
+@media (max-width:760px){.sec{grid-template-columns:1fr;padding-block:32px}}
+
+.rows{list-style:none;margin:0;padding:0}
+.rows li{display:grid;grid-template-columns:152px 1fr;gap:4px 20px;padding-block:11px;border-bottom:1px solid var(--rule)}
+.rows li:first-child{padding-top:0}
+.rows li:last-child{border-bottom:0}
+.rows .k{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.82rem;color:var(--muted);padding-top:3px}
+.rows .k a{color:var(--accent-ink)}
+.rows .t{color:var(--ink)}
+.rows .s{display:block;color:var(--mid);font-size:.94rem}
+@media (max-width:560px){.rows li{grid-template-columns:1fr}}
+.more{margin-top:16px;font-size:.95rem}
+
+/* ---------- "sky" sections: a dark panel with a Webb image behind the text ---------- */
+.sky{
+  --ink:#E8EEF5; --mid:#B9C6D4; --muted:#93A6B9; --rule:rgba(255,255,255,.16);
+  --accent:#6EA2FF; --accent-ink:#8FB8FF; --accent-2:#4CC3CF;
+  color:var(--ink);
+  border-top:0; border-radius:22px; margin-block:24px; padding-inline:clamp(20px,4vw,44px);
+  background-color:#070B14; background-repeat:no-repeat;
+}
+.sky.uranus{
+  background-image:
+    linear-gradient(90deg, rgba(7,11,20,.93) 0%, rgba(7,11,20,.86) 58%, rgba(7,11,20,.40) 84%, rgba(7,11,20,.04) 100%),
+    linear-gradient(180deg, rgba(7,11,20,0) 55%, #070B14 100%),
+    url("assets/uranus-bg.jpg");
+  background-size:100% 640px, 100% 640px, auto 640px;
+  background-position:0 0, 0 0, right -274px top 0;
+}
+.sky.neptune{
+  background-image:
+    linear-gradient(90deg, rgba(7,11,20,.93) 0%, rgba(7,11,20,.86) 58%, rgba(7,11,20,.40) 84%, rgba(7,11,20,.04) 100%),
+    linear-gradient(180deg, rgba(7,11,20,0) 55%, #070B14 100%),
+    url("assets/neptune-bg.jpg");
+  background-size:100% 640px, 100% 640px, auto 640px;
+  background-position:0 0, 0 0, right -274px top 0;
+}
+.sky.k218{
+  background-image:
+    linear-gradient(90deg, rgba(7,11,20,.92) 0%, rgba(7,11,20,.80) 52%, rgba(7,11,20,.42) 80%, rgba(7,11,20,.10) 100%),
+    url("assets/k218b-bg.jpg");
+  background-size:100% 100%, cover;
+  background-position:0 0, 72% 40%;
+}
+.bgcredit{grid-column:1 / -1;margin:8px 0 0 !important;max-width:none !important;font-size:.74rem;line-height:1.5;color:var(--muted)}
+.bgcredit a{color:var(--accent-ink)}
+
+.contact a.mail{font-family:'Newsreader',Georgia,serif;font-size:1.5rem;color:var(--ink);text-decoration-color:var(--accent-2)}
+.contact a.mail:hover{color:var(--accent-ink)}
+.links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px;font-size:.98rem}
+footer{border-top:1px solid var(--rule);padding-block:28px 48px;color:var(--muted);font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- TOP BAR: navigation and language switch -->
+  <header class="bar">
+    <a class="brand" href="#top">Luca Morf</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#research"><span data-l="en">Research</span><span data-l="de">Forschung</span></a>
+      <a href="#teaching"><span data-l="en">Teaching</span><span data-l="de">Lehre</span></a>
+      <a href="#recognition"><span data-l="en">Awards and talks</span><span data-l="de">Preise und Vorträge</span></a>
+      <a href="#contact"><span data-l="en">Contact</span><span data-l="de">Kontakt</span></a>
+      <span class="lang" role="group" aria-label="Language">
+        <button type="button" data-set="en" aria-pressed="true">EN</button>
+        <button type="button" data-set="de" aria-pressed="false">DE</button>
+      </span>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <!-- HERO: every text exists twice, once with data-l="en" and once with data-l="de" -->
+    <section class="hero">
+      <img src="assets/luca-morf.jpg" alt="Portrait of Luca Morf" width="2000" height="1335">
+      <div class="txt">
+        <p class="kicker"><span data-l="en">Theoretical astrophysics and cosmology · University of Zürich</span><span data-l="de">Theoretische Astrophysik und Kosmologie · Universität Zürich</span></p>
+        <h1>Luca Morf</h1>
+        <p class="role"><span data-l="en">PhD candidate studying the interiors of Uranus, Neptune and sub-Neptunes</span><span data-l="de">Doktorand, erforscht das Innere von Uranus, Neptun und Sub-Neptunen</span></p>
+        <p class="lede">
+          <span data-l="en">I build models that infer what planets are made of, and how certain we can be, given the sparse data on Uranus, Neptune and similar exoplanets.</span>
+          <span data-l="de">Ich entwickle Modelle, die aus den spärlichen Daten zu Uranus, Neptun und ähnlichen Exoplaneten ableiten, woraus Planeten bestehen und wie sicher wir dabei sein können.</span>
+        </p>
+        <div class="cta">
+          <a class="btn" href="#research"><span data-l="en">Read about my research</span><span data-l="de">Zur Forschung</span></a>
+          <a class="btn ghost" href="#contact"><span data-l="en">Get in touch</span><span data-l="de">Kontakt aufnehmen</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section class="sec sky uranus" id="research">
+      <h2><span data-l="en">Research</span><span data-l="de">Forschung</span></h2>
+      <div>
+        <div data-l="en">
+          <p>Our picture of Uranus and Neptune rests on a handful of measurements, most of them from Voyager 2. I develop models of their interiors and the statistical methods to explore them without assuming a structure in advance, asking which compositions the data actually allow.</p>
+          <p>The same approach applies to exoplanets orbiting other stars. For the sub-Neptunes K2-18 b and TOI-270 d, I study how more flexible interior models, including gradients in composition, change what we can say about them. Other work covers Jupiter's primordial structure, dark matter in the Milky Way, and simulations of the large-scale structure of the universe.</p>
+          <p>I am a PhD candidate in <a href="https://www.astro.uzh.ch/~rhelled/">Ravit Helled</a>'s group at the University of Zürich. My dissertation is titled <em>Characterizing Uranus, Neptune and Intermediate-Mass Exoplanets</em>.</p>
+        </div>
+        <div data-l="de">
+          <p>Unser Bild von Uranus und Neptun beruht auf wenigen Messungen, die meisten stammen von Voyager 2. Ich entwickle Modelle ihres Inneren und die statistischen Methoden, um sie zu erkunden, ohne vorab eine Struktur anzunehmen. Die Frage ist, welche Zusammensetzungen die Daten tatsächlich zulassen.</p>
+          <p>Derselbe Ansatz lässt sich auf Exoplaneten bei fernen Sternen übertragen. An den Sub-Neptunen K2-18 b und TOI-270 d untersuche ich, wie flexiblere Modelle des Inneren, etwa mit Gradienten in der Zusammensetzung, verändern, was wir über sie sagen können. Weitere Arbeiten betreffen die ursprüngliche Struktur von Jupiter, Dunkle Materie in der Milchstrasse und Simulationen der grossräumigen Struktur des Universums.</p>
+          <p>Ich bin Doktorand in der Gruppe von <a href="https://www.astro.uzh.ch/~rhelled/">Ravit Helled</a> an der Universität Zürich. Meine Dissertation trägt den Titel <em>Characterizing Uranus, Neptune and Intermediate-Mass Exoplanets</em>.</p>
+        </div>
+
+        <ul class="rows" style="margin-top:28px">
+          <li><span class="k">2026 · <a href="https://arxiv.org/abs/2609.04318">2609.04318</a></span><span class="t">Composition gradients in sub-Neptunes: K2-18 b and TOI-270 d as case studies</span></li>
+          <li><span class="k">2025 · <a href="https://arxiv.org/abs/2512.16995">2512.16995</a></span><span class="t">Towards an agnostic algorithm for sampling empirical structure models: The case of Uranus and Neptune</span></li>
+          <li><span class="k">2025 · <a href="https://arxiv.org/abs/2512.03961">2512.03961</a></span><span class="t">Further constraints on Jupiter's primordial structure</span></li>
+          <li><span class="k">2025 · <a href="https://arxiv.org/abs/2510.00175">2510.00175</a></span><span class="t">Icy or rocky? Convective or stable? New interior models of Uranus and Neptune</span></li>
+          <li><span class="k">2025 · <a href="https://arxiv.org/abs/2502.08805">2502.08805</a></span><span class="t">Dark Matter Particle Flux in a Dynamically Self-consistent Milky Way Model</span></li>
+          <li><span class="k">2024 · <a href="https://arxiv.org/abs/2408.10336">2408.10336</a></span><span class="t">The interior of Uranus: Thermal profile, bulk composition, and the distribution of rock, water, and hydrogen and helium</span></li>
+        </ul>
+        <p class="more"><a href="https://scholar.google.com/citations?user=Y1n2ydYAAAAJ&amp;hl=en"><span data-l="en">All publications on Google Scholar</span><span data-l="de">Alle Veröffentlichungen auf Google Scholar</span></a></p>
+      </div>
+      <p class="bgcredit">
+        <span data-l="en">Background: Uranus in the near infrared (Webb NIRCam, 2023), cropped.</span><span data-l="de">Hintergrund: Uranus im nahen Infrarot (Webb NIRCam, 2023), Ausschnitt.</span>
+        Image: NASA, ESA, CSA, STScI. Processing: Alyssa Pagan, Macarena Garcia Marin (STScI). <a href="https://science.nasa.gov/asset/webb/uranus-wide-nircam-image/">NASA</a>
+      </p>
+    </section>
+
+    <!-- TEACHING -->
+    <section class="sec sky neptune" id="teaching">
+      <h2><span data-l="en">Teaching</span><span data-l="de">Lehre</span></h2>
+      <div>
+        <p data-l="en">Explaining an idea to someone else is the best way to understand it myself, and few things are as rewarding as watching students grow. I have taught at university and at Gymnasium (upper-secondary school) level.</p>
+        <p data-l="de">Ein Konzept für andere aufzubereiten ist für mich der beste Weg, es selbst zu verstehen, und nur wenig ist so erfüllend, wie Studierenden beim Wachsen zuzusehen. Ich habe an der Universität und am Gymnasium (Sekundarstufe II) unterrichtet.</p>
+        <ul class="rows" style="margin-top:22px">
+          <li><span class="k">2023 –</span><span class="t"><span data-l="en">Teaching assistant, University of Zürich</span><span data-l="de">Lehrassistent, Universität Zürich</span><span class="s"><span data-l="en">Planet Formation (2×), Continuum Mechanics, Physics I, Introduction to Astronomy, Introduction to Astrobiology</span><span data-l="de">Planetenbildung (2×), Kontinuumsmechanik, Physik I, Einführung in die Astronomie, Einführung in die Astrobiologie</span></span></span></li>
+          <li><span class="k">2020 / 21</span><span class="t"><span data-l="en">Physics teacher, Kantonsschule Im Lee, Winterthur</span><span data-l="de">Physiklehrer, Kantonsschule Im Lee, Winterthur</span><span class="s"><span data-l="en">Five classes across all profiles, 60% position, plus two interdisciplinary project weeks</span><span data-l="de">Fünf Klassen aus allen Profilen, 60%-Pensum, dazu zwei interdisziplinäre Vertiefungswochen</span></span></span></li>
+          <li><span class="k">2019 – 2022</span><span class="t"><span data-l="en">Teaching assistant, ETH Zürich</span><span data-l="de">Lehrassistent, ETH Zürich</span><span class="s"><span data-l="en">Physics I (2×), Numerical Methods (2×), Theory of Heat, General Relativity</span><span data-l="de">Physik I (2×), Numerische Methoden (2×), Wärmelehre, Allgemeine Relativitätstheorie</span></span></span></li>
+          <li><span class="k"><span data-l="en">in progress</span><span data-l="de">laufend</span></span><span class="t"><span data-l="en">Teaching diploma for upper-secondary schools (Lehrdiplom für Maturitätsschulen), University of Zürich</span><span data-l="de">Lehrdiplom für Maturitätsschulen, Universität Zürich</span><span class="s"><span data-l="en">Subject: Physics</span><span data-l="de">Unterrichtsfach: Physik</span></span></span></li>
+        </ul>
+      </div>
+      <p class="bgcredit">
+        <span data-l="en">Background: Neptune in the near infrared (Webb NIRCam, 2022), cropped.</span><span data-l="de">Hintergrund: Neptun im nahen Infrarot (Webb NIRCam, 2022), Ausschnitt.</span>
+        Image: NASA, ESA, CSA, STScI. Processing: Joseph DePasquale (STScI), Naomi Rowe-Gurney (NASA-GSFC). <a href="https://science.nasa.gov/asset/webb/neptune-nircam/">NASA</a>
+      </p>
+    </section>
+
+    <!-- AWARDS AND TALKS -->
+    <section class="sec sky k218" id="recognition">
+      <h2><span data-l="en">Awards and talks</span><span data-l="de">Preise und Vorträge</span></h2>
+      <div>
+        <ul class="rows">
+          <li><span class="k">2026</span><span class="t"><span data-l="en"><a href="https://www.research.uzh.ch/en/funding/phd/uzhcandoc.html">UZH Candoc Grant</a> for outstanding doctoral projects (CHF 61,784)</span><span data-l="de"><a href="https://www.research.uzh.ch/en/funding/phd/uzhcandoc.html">UZH Candoc Grant</a> für ausgezeichnete Dissertationsprojekte (CHF 61’784)</span></span></li>
+          <li><span class="k">2024</span><span class="t"><span data-l="en"><a href="https://ethz.ch/en/the-eth-zurich/education/awards/willi-studer-prize.html">Willi Studer Prize</a>, best Master's degree of the year, ETH Zürich (CHF 3,000)</span><span data-l="de"><a href="https://ethz.ch/en/the-eth-zurich/education/awards/willi-studer-prize.html">Willi-Studer-Preis</a> für den besten Masterabschluss des Jahres, ETH Zürich (CHF 3’000)</span></span></li>
+          <li><span class="k">2019</span><span class="t"><span data-l="en"><a href="https://vmp.ethz.ch/en/ta-awards/">VMP award</a> for excellent teaching, ETH Zürich</span><span data-l="de"><a href="https://vmp.ethz.ch/en/ta-awards/">VMP-Auszeichnung</a> für exzellente Lehre, ETH Zürich</span></span></li>
+          <li><span class="k">2017 –</span><span class="t"><span data-l="en">Member of the <a href="https://www.studyfoundation.ch/">Swiss Study Foundation</a></span><span data-l="de">Mitglied der <a href="https://www.studyfoundation.ch/">Schweizerischen Studienstiftung</a></span></span></li>
+        </ul>
+        <ul class="rows" style="margin-top:28px">
+          <li><span class="k">09 / 2026</span><span class="t">Europlanet Science Congress, The Hague</span></li>
+          <li><span class="k">01 / 2026</span><span class="t">PLATO Theory Meeting, Queen Mary University of London</span></li>
+          <li><span class="k">08 / 2025</span><span class="t">Ice Giant Systems Seminar Series, Johns Hopkins University</span></li>
+          <li><span class="k">09 / 2024</span><span class="t">JUnior Researchers' Assembly (JURA V), Murten</span></li>
+        </ul>
+      </div>
+      <p class="bgcredit">
+        <span data-l="en">Background: artist's illustration of the exoplanet K2-18 b.</span><span data-l="de">Hintergrund: künstlerische Darstellung des Exoplaneten K2-18 b.</span>
+        Illustration: NASA, ESA, CSA, Joseph Olmsted (STScI); Science: Nikku Madhusudhan (IoA). <a href="https://science.nasa.gov/asset/webb/exoplanet-k2-18-b-illustration/">NASA</a>
+      </p>
+    </section>
+
+    <!-- CONTACT: the e-mail address is assembled in the script at the bottom (see u and d) -->
+    <section class="sec contact" id="contact">
+      <h2><span data-l="en">Contact</span><span data-l="de">Kontakt</span></h2>
+      <div>
+        <p data-l="en">I am happy to hear from fellow researchers, students and anyone curious about our universe.</p>
+        <p data-l="de">Ich freue mich über Nachrichten von Forschenden, Studierenden und allen, die sich für unser Universum interessieren.</p>
+        <p><a class="mail" id="mail" href="#"><noscript>luca.morf [at] uzh [dot] ch</noscript></a></p>
+        <div class="links">
+          <a href="https://scholar.google.com/citations?user=Y1n2ydYAAAAJ&amp;hl=en">Google Scholar</a>
+          <a href="https://github.com/lucamorf">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span data-l="en">© Luca Morf · Last updated October 2026</span>
+    <span data-l="de">© Luca Morf · Zuletzt aktualisiert im Oktober 2026</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var titles={en:'Luca Morf, theoretical astrophysics and cosmology',de:'Luca Morf, Theoretische Astrophysik und Kosmologie'};
+  var root=document.documentElement;
+  var buttons=document.querySelectorAll('.lang button');
+  function apply(l){
+    root.lang=l;
+    document.title=titles[l];
+    document.querySelectorAll('img[data-alt-en]').forEach(function(i){i.alt=i.getAttribute('data-alt-'+l);});
+    buttons.forEach(function(b){b.setAttribute('aria-pressed',b.dataset.set===l?'true':'false');});
+  }
+  buttons.forEach(function(b){
+    b.addEventListener('click',function(){
+      var l=b.dataset.set;
+      apply(l);
+      try{localStorage.setItem('lang',l);}catch(e){}
+    });
+  });
+  apply(root.lang==='de'?'de':'en');
+  var m=document.getElementById('mail');
+  var u='luca.morf',d='uzh.ch';
+  m.href='mailto:'+u+'@'+d;
+  m.textContent=u+'@'+d;
+})();
+</script>
+</body>
+</html>
